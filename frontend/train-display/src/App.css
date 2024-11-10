@@ -1,0 +1,48 @@
+/* General styling */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #000; /* Dark background */
+  color: #ffcc00; /* Yellow text similar to digital displays */
+  font-family: 'Courier New', Courier, monospace; /* Digital-style font */
+  text-align: left;
+}
+
+/* Current time display */
+.current-time {
+  font-size: 2em;
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+/* Train list styling */
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-bottom: 2px solid #333; /* Divider between entries */
+  background-color: #000; /* Dark background */
+  color: #ffcc00; /* Yellow text */
+  font-size: 1.5em;
+}
+
+/* Styling for the train details */
+.train-time {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.train-info {
+  margin-top: 0.5rem;
+  color: #fff; /* White text for details */
+}
+
+.train-destination {
+  font-size: 1.2em;
+}
