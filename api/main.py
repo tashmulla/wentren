@@ -26,7 +26,8 @@ def get_journey_list():
 	url = f"https://api.tfl.gov.uk/Journey/JourneyResults/{hayes_and_harlington}/to/{tottenham_court_road}"
 
 	params = {
-		"app_key": app_key
+		"app_key": app_key,
+		"useRealTimeLiveArrivals": "true"
 	}
 
 	response = requests.get(url, params=params)
