@@ -1,48 +1,71 @@
 /* General styling */
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #000; /* Dark background */
-  color: #ffcc00; /* Yellow text similar to digital displays */
-  font-family: 'Courier New', Courier, monospace; /* Digital-style font */
-  text-align: left;
+body {
+    background-color: #000; /* Black background */
+    color: #FFD700; /* Default yellow text */
+    font-family: 'Courier New'; /* Use the existing font family */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-/* Current time display */
-.current-time {
-  font-size: 2em;
-  text-align: right;
-  margin-bottom: 1rem;
+/* Center container for train list */
+.train-list-container {
+    width: 110%; /* Increase the width for more space */
+    max-width: 800px; /* Adjusted max-width for better readability */
+    text-align: center;
 }
 
-/* Train list styling */
+/* Styling for the train items */
 ul {
-  padding: 0;
-  list-style-type: none;
+    padding: 0;
+    list-style-type: none; /* Remove bullet points */
 }
 
-li {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border-bottom: 2px solid #333; /* Divider between entries */
-  background-color: #000; /* Dark background */
-  color: #ffcc00; /* Yellow text */
-  font-size: 1.5em;
+.train-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #333; /* Dark background for each train item */
 }
 
-/* Styling for the train details */
-.train-time {
-  font-weight: bold;
-  font-size: 2em;
+/* Train header and details */
+.train-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #FFD700; /* Yellow text */
 }
 
-.train-info {
-  margin-top: 0.5rem;
-  color: #fff; /* White text for details */
+.train-details {
+    color: #FFD700; /* Yellow text */
 }
 
-.train-destination {
-  font-size: 1.2em;
+.train-status.on-time {
+    color: #5cb85c; /* Green for "On Time" */
+}
+
+.train-status.delayed {
+    color: #d9534f; /* Red for "Delayed" */
+}
+
+/* Styling for estimated time and time until if delayed */
+.train-details .train-estimated-time,
+.train-details .train-time-until {
+    color: #FFF; /* White text */
+}
+
+.train-stops {
+    color: #FFD700; /* Yellow text */
+}
+
+.train-divider {
+    margin-top: 15px;
+    border: 0.5px solid #666; /* Subtle divider */
+}
+
+.current-time {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #FFD700; /* Yellow text */
 }
