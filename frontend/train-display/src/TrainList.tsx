@@ -25,7 +25,7 @@ const TrainList: React.FC = () => {
 	const loadTrainData = () => {
 		fetchTrainDetails()
 		  .then((data) => {
-			if (data) {
+			if (data.length) {
 			  const updatedTrains = data.map((train: Train) => {
 				const trainTime = new Date(train.startTime);
 				const timeDiff = Math.floor((trainTime.getTime() - currentTime.getTime()) / 60000);
