@@ -3,6 +3,7 @@ body {
     background-color: #000; /* Black background */
     color: #FFD700; /* Default yellow text */
     font-family: 'Courier New'; /* Use the existing font family */
+    font-size: 1.7Em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +15,7 @@ body {
 .train-list-container {
     width: 110%; /* Increase the width for more space */
     max-width: 800px; /* Adjusted max-width for better readability */
-    text-align: center;
+    text-align: left;
 }
 
 /* Styling for the train items */
@@ -69,3 +70,18 @@ ul {
     font-size: 1.5em;
     color: #FFD700; /* Yellow text */
 }
+
+.train-item.soon-arrival {
+    color: #999; /* Greyed out text color */
+    background-color: #222; /* Slightly darker background */
+}
+
+.train-item.soon-arrival .train-header,
+.train-item.soon-arrival .train-details,
+.train-item.soon-arrival .train-status,
+.train-item.soon-arrival .train-estimated-time,
+.train-item.soon-arrival .train-stops,
+.train-item.soon-arrival .train-time-until {
+    color: #999; /* Apply grey to all child text */
+}
+
