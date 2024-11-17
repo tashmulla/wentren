@@ -46,32 +46,33 @@ def get_journey_list():
 		serviceList = []
 		current_time = datetime.now()
 		
-		for service in data['trainServices']:
-			if service['etd'] == "On time":
-				scheduled_time_str = service['std']
-			else:
-				scheduled_time_str = service['etd']
-			scheduled_time = datetime.strptime(scheduled_time_str, "%H:%M")
-			scheduled_time = current_time.replace(hour=scheduled_time.hour, minute=scheduled_time.minute, second=0, microsecond=0)
-            
-			time_diff = (scheduled_time - current_time).total_seconds() / 60
-			
-			calling_points = service['subsequentCallingPoints'][0]['callingPoint']
-			stop_count = 0
-			for stop in calling_points:
-				stop_count += 1
-				if stop['locationName'] == 'Tottenham Court Road':
-					break
-						
-			serviceListItem = {
-				'scheduledTime': service['std'],
-				'estimatedTime': service['etd'],
-				'numberOfStops': stop_count,
-				'destination': service['destination'][0]['locationName'],
-				'origin': service['origin'][0]['locationName'],
-			}
+		if 'trainServices' in data and data['trainServices']:
+			for service in data['trainServices']:
+				if service['etd'] == "On time":
+					scheduled_time_str = service['std']
+				else:
+					scheduled_time_str = service['etd']
+				scheduled_time = datetime.strptime(scheduled_time_str, "%H:%M")
+				scheduled_time = current_time.replace(hour=scheduled_time.hour, minute=scheduled_time.minute, second=0, microsecond=0)
 				
-			serviceList.append(serviceListItem)
-		return serviceList
+				time_diff = (scheduled_time - current_time).total_seconds() / 60
+				
+				calling_points = service['subsequentCallingPoints'][0]['callingPoint']
+				stop_count = 0
+				for stop in calling_points:
+					stop_count += 1
+					if stop['locationName'] == 'Tottenham Court Road':
+						break
+							
+				serviceListItem = {
+					'scheduledTime': service['std'],
+					'estimatedTime': service['etd'],
+					'numberOfStops': stop_count,
+					'destination': service['destination'][0]['locationName'],
+					'origin': service['origin'][0]['locationName'],
+				}
+					
+				serviceList.append(serviceListItem)
+			return serviceList
 	else:
 		return {"error": f"Error {response.status_code}: {response.text}"}
