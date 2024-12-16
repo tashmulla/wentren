@@ -69,6 +69,8 @@ const TrainList: React.FC = () => {
                 )}
                 {' / '}
                 <span className="train-time-until">{train.timeUntil} mins away</span>
+                {' / '}
+                <span className="train-duration">{train.duration} mins</span>
             </div>
         );
     };

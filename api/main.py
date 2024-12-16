@@ -30,6 +30,7 @@ def get_journey_list():
 		"filterType": "to",
 		"timeWindow": 60,
 	}
+
 	
 	headers = {
 		"x-apikey": api_key,
@@ -40,8 +41,6 @@ def get_journey_list():
 
 	if response.status_code == 200:
 		data = response.json()
-		
-		print(data)
 		
 		serviceList = []
 		current_time = datetime.now()
@@ -59,10 +58,25 @@ def get_journey_list():
 				
 				calling_points = service['subsequentCallingPoints'][0]['callingPoint']
 				stop_count = 0
+				arrival_time_str = None
 				for stop in calling_points:
 					stop_count += 1
 					if stop['locationName'] == 'Tottenham Court Road':
+						arrival_time_str = stop['st']
 						break
+				
+				duration = None
+				if arrival_time_str:
+					arrival_time = datetime.strptime(arrival_time_str, "%H:%M")
+					arrival_time = scheduled_time.replace(hour=arrival_time.hour, minute=arrival_time.minute, second=0, microsecond=0)
+    
+					# Handle overnight trains: if arrival time is earlier than scheduled time, it's the next day
+					if arrival_time < scheduled_time:
+						arrival_time = arrival_time.replace(day=scheduled_time.day + 1)
+    
+					# Calculate duration
+					duration = round((arrival_time - scheduled_time).total_seconds() / 60)
+
 							
 				serviceListItem = {
 					'scheduledTime': service['std'],
@@ -70,6 +84,7 @@ def get_journey_list():
 					'numberOfStops': stop_count,
 					'destination': service['destination'][0]['locationName'],
 					'origin': service['origin'][0]['locationName'],
+					'duration': duration
 				}
 					
 				serviceList.append(serviceListItem)
